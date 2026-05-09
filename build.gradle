@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.diffplug.spotless' version '8.4.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 6 (aktuellste stabile Version)
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    mainClass = 'catcafe.Main'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+test {
+    useJUnitPlatform()
+}
+
+spotless {
+    java {
+        // Google Java Format mit 4 Leerzeichen Einrückung (AOSP-Stil)
+        googleJavaFormat().aosp()
+        // Zeilenlänge auf 120 Zeichen begrenzen, um lange Strings umzubrechen
+        googleJavaFormat().maxColumn(120)
+        // Importe automatisch ordnen
+        importOrder('java', 'javax', 'org', 'com', 'catcafe')
+        removeUnusedImports()
+    }
+}

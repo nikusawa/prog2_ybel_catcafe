@@ -27,8 +27,9 @@ jobs:
                   java-version: '25'
                   distribution: 'temurin'
 
-            - name: Gradlew Berechtigungen setzen
-              run: chmod +x gradlew
+
+            - name: Gradle set up
+              uses: gradle/actions/setup-gradle@v3
 
             - name: Projekt bauen
               run: ./gradlew build

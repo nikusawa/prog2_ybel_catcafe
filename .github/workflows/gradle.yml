@@ -27,7 +27,6 @@ jobs:
                   java-version: '25'
                   distribution: 'temurin'
 
-
             - name: Gradlew Berechtigungen setzen
               run: chmod +x gradlew
 
